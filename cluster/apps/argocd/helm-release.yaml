@@ -90,10 +90,10 @@ spec:
         tls:
           - hosts:
               - "argocd.${SECRET_DOMAIN}"
-            secretName: "hajimari-tls"
-    resources:
-      requests:
-        cpu: 50m
-        memory: 64Mi
-      limits:
-        memory: 96Mi
+            secretName: "argocd-tls"
+    # resources:
+    #   requests:
+    #     cpu: 50m
+    #     memory: 64Mi
+    #   limits:
+    #     memory: 96Mi
