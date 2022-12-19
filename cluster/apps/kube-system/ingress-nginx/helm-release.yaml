@@ -4,6 +4,8 @@ kind: HelmRelease
 metadata:
   name: ingress-nginx
   namespace: kube-system
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
 spec:
   interval: 15m
   chart:

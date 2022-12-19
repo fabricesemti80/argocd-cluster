@@ -85,7 +85,7 @@ spec:
         nginx.ingress.kubernetes.io/ssl-passthrough: "true"
         nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
       hosts:
-        - host: "argocd.${SECRET_DOMAIN}"
+        - host: argocd.fabricesemti.net
           paths:
             - path: /
               pathType: Prefix
@@ -96,11 +96,11 @@ spec:
                     name: https
       tls:
         - hosts:
-            - "argocd.${SECRET_DOMAIN}"
+            - argocd.fabricesemti.net
           secretName: argocd-secret # do not change, this is provided by Argo CD
-    # resources:
-    #   requests:
-    #     cpu: 50m
-    #     memory: 64Mi
-    #   limits:
-    #     memory: 96Mi
+    # # resources:
+    # #   requests:
+    # #     cpu: 50m
+    # #     memory: 64Mi
+    # #   limits:
+    # #     memory: 96Mi
