@@ -54,25 +54,43 @@ spec:
     #   readiness: *probes
     #   startup:
     #     enabled: false
+    # ingress:
+    #   main:
+    #     enabled: true
+    #     ingressClassName: "nginx"
+    #     annotations:
+    #       cert-manager.io/cluster-issuer: "letsencrypt-production"
+    #       external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+    #       external-dns/is-public: "true"
+    #       hajimari.io/enable: "true"
+    #       hajimari.io/icon: "all-inclusive"
+    #     hosts:
+    #       - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
+    #         paths:
+    #           - path: /
+    #             pathType: Prefix
+    #     tls:
+    #       - hosts:
+    #           - *host
+    #         secretName: "argocd-tls"
     ingress:
       main:
         enabled: true
         ingressClassName: "nginx"
         annotations:
           cert-manager.io/cluster-issuer: "letsencrypt-production"
-          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
-          external-dns/is-public: "true"
           hajimari.io/enable: "true"
           hajimari.io/icon: "all-inclusive"
+          nginx.ingress.kubernetes.io/whitelist-source-range: "10.0.0.0/8,172.16.0.0/12,192.168.0.0/16"
         hosts:
-          - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
+          - host: "argocd.${SECRET_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
-              - *host
-            secretName: "argocd-tls"
+              - "argocd.${SECRET_DOMAIN}"
+            secretName: "hajimari-tls"
     resources:
       requests:
         cpu: 50m
