@@ -72,7 +72,7 @@ spec:
         tls:
           - hosts:
               - *host
-            secretName: "echo-server-tls"
+            secretName: "argocd-tls"
     resources:
       requests:
         cpu: 50m
